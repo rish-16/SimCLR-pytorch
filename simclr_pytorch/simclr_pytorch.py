@@ -48,12 +48,12 @@ class SimCLR(nn.Module):
         # first augmentation
         x1 = self.random_transform(x)
         rep1 = self.big_cnn(x1)
-        proj1 = self.l2(self.l1(rep1))
+        proj1 = self.l2(torch.relu(self.l1(rep1)))
         
         # second augmentation
         x2 = self.random_transform(x)
         rep2 = self.big_cnn(x2)
-        proj2 = self.l2(self.l1(rep2))
+        proj2 = self.l2(torch.relu(self.l1(rep2)))
         
         return proj1, proj2
         
